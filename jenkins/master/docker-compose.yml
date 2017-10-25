@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  airpoint-jenkins-master:
+    image: "jenkins/jenkins:lts"
+    ports:
+     - "8080:8080"
+     - "5000:5000"
+    volumes:
+     - type: volume
+       source: /home/ubuntu
+       target: /var/jenkins_home
+    user: jenkins
+    env_file: ./airpoint-jenkins-master.env
