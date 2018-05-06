@@ -43,3 +43,13 @@ ssh slaves plugin???
 matrix authorization strategy?
 email extension?
 mailer?
+
+## Setting up the Docker plugin
+
+### Create the 'Docker' cloud in Jenkins config
+
+1. Browse to $(JENKINS_HOST)/configure
+2. Add a new docker 'cloud'
+3. Set the Docker Host URI to the 'tcp' output of `docker-machine config` on your docker host???
+ 
+
