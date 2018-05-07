@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker cp jenkins-master:/var/jenkins_home jenkins_home
+docker cp jenkins-master:/var/jenkins_home ../backup/jenkins_home
