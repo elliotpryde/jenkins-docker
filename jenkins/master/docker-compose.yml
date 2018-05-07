@@ -5,11 +5,3 @@ services:
     build:
       context: ./build
       dockerfile: Dockerfile
-    ports:
-     - "8080:8080"
-     - "5000:5000"
-#    volumes:
-#     - type: volume
-#       source: /c/jenkins_home
-#       target: /var/jenkins_home
-    user: jenkins
