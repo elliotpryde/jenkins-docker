@@ -27,24 +27,6 @@ docker cp $ID:/var/jenkins_home destination_dir
 
 To add another plugin, pass it's name to `/usr/local/bin/install-plugins.sh` as another argument in the Dockerfile.
 
-### Default plugins
-
-folders?
-build timeout?
-credentials binding plugin?
-timestamper?
-workspace cleanup?
-gradle?
-pipeline
-github branch source?
-pipeline: github groovy libraries
-pipeline: stage view
-github
-ssh slaves plugin???
-matrix authorization strategy?
-email extension?
-mailer?
-
 ## Setting up the Docker plugin
 
 ### Create the 'Docker' cloud in Jenkins config
