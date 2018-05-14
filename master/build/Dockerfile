@@ -2,6 +2,9 @@ FROM jenkins/jenkins:2.119-slim
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 
+# Configure jenkins
+COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
+
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh \
     docker-plugin \
@@ -77,9 +80,6 @@ RUN /usr/local/bin/install-plugins.sh \
     workflow-job \
     structs \
     credentials
-
-# Set number of executors on master
-COPY executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 
 # Add a specialised script for healthchecks
 COPY health-check.sh /usr/local/bin/health-check.sh
