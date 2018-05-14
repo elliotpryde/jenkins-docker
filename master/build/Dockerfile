@@ -29,6 +29,8 @@ EXPOSE 8080
 # Used by JNLP build slaves
 EXPOSE 5000
 
+ENV JENKINS_ROOT "http://localhost:8080"
+
 # Configure jenkins
 COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
 
