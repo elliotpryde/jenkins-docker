@@ -1,7 +1,5 @@
 FROM jenkins/jenkins:2.119-slim
 
-#ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-
 # Configure jenkins
 COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
 
@@ -81,14 +79,18 @@ RUN /usr/local/bin/install-plugins.sh \
     structs \
     credentials
 
+# Set default login credentials
+ENV JENKINS_USER admin
+ENV JENKINS_PASS admin
+
 # Add a specialised script for healthchecks
 COPY health-check.sh /usr/local/bin/health-check.sh
 
 HEALTHCHECK --interval=15s --timeout=5s --retries=3 \
   CMD ./usr/local/bin/health-check.sh
 
-# Increase java heap size
-ENV JAVA_OPTS -Xmx8192m
+# Increase java heap size, prevent running of the setup wizard
+ENV JAVA_OPTS "-Xmx8192m -Djenkins.install.runSetupWizard=false"
 
 # Web client access
 EXPOSE 8080
