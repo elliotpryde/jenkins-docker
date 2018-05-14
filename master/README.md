@@ -27,6 +27,24 @@ docker cp $ID:/var/jenkins_home destination_dir
 
 To add another plugin, pass it's name to `/usr/local/bin/install-plugins.sh` as another argument in the Dockerfile.
 
+### Default plugins
+
+To get installed plugins, run this in the Jenkins script console at <jenkins-url>/script:
+
+```groovy
+Jenkins.instance.pluginManager.plugins.each{
+  plugin ->
+    println ("(${plugin.getShortName()}): ${plugin.getVersion()}")
+}
+```
+
+Or run this
+
+```sh
+curl -s -k "http://admin:admin@localhost:8080/pluginManager/api/json?depth=1" | jq -r '.plugins[].shortName' | tee plugins.txt
+
+```
+
 ## Setting up the Docker plugin
 
 ### Create the 'Docker' cloud in Jenkins config
@@ -34,5 +52,5 @@ To add another plugin, pass it's name to `/usr/local/bin/install-plugins.sh` as 
 1. Browse to $(JENKINS_HOST)/configure
 2. Add a new docker 'cloud'
 3. Set the Docker Host URI to the 'tcp' output of `docker-machine config` on your docker host???
- 
+
 
