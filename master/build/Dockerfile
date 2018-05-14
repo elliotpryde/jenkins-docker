@@ -1,8 +1,5 @@
 FROM jenkins/jenkins:2.119-slim
 
-# Configure jenkins
-COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
-
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh \
     git \
@@ -31,5 +28,8 @@ EXPOSE 8080
 
 # Used by JNLP build slaves
 EXPOSE 5000
+
+# Configure jenkins
+COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 USER jenkins
