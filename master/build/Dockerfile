@@ -2,6 +2,7 @@ FROM jenkins/jenkins:2.119-slim
 
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh \
+    timestamper \
     git \
     matrix-auth \
     workflow-aggregator \
