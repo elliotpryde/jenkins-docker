@@ -1,0 +1,12 @@
+options:
+  max-time: 2
+
+pipelines:
+  branches:
+    master:
+      - parallel:
+        - step:
+            image: hashicorp/packer:1.2.3
+            name: Validate Packer Templates
+            script:
+              - packer validate ./infrastructure/jenkins_master_ami.json
