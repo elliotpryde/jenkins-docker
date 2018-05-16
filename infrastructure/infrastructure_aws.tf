@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "eu-west-2"
+  region = "eu-west-2"
 }
 
 resource "aws_instance" "example_ubuntu_ec2_t2_nano" {
