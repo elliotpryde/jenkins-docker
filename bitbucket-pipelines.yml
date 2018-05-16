@@ -9,4 +9,5 @@ pipelines:
             image: hashicorp/packer:1.2.3
             name: Validate Packer Templates
             script:
-              - packer validate ./infrastructure/jenkins_master_ami.json
+              - cd infrastructure
+              - packer validate jenkins_master_ami.json
