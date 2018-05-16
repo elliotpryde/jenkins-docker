@@ -8,6 +8,9 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "eu-west-2",
+    "tags": [{
+      "Component": "jenkins_master"
+    }],
     "source_ami_filter": {
       "filters": {
       "virtualization-type": "hvm",
@@ -20,5 +23,19 @@
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
     "ami_name": "packer-example {{timestamp}}"
-  }]
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "./hello-world.txt",
+      "destination": "/home/ubuntu/"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "ls -la /home/ubuntu",
+        "cat /home/ubuntu/hello-world.txt"
+      ]
+    }
+  ]
 }
