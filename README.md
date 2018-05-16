@@ -4,6 +4,11 @@
 
 Runs as a single docker container.
 
+## Getting started
+
+* Set the required environment variables defined in the section below
+* Install [terraform](https://www.terraform.io/) and run `terraform apply` from the `./infrastructure` directory
+
 #### TODO
 
 * Working solution for persisting the jenkins_home directory
