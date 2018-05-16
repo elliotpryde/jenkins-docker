@@ -16,6 +16,8 @@ Runs as a single docker container.
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | AWS_ACCESS_KEY_ID (Required)     | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
 | AWS_SECRET_ACCESS_KEY (Required) | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
+| JENKINS_USER (Optional)          | Override default admin username                                                                                        |
+| JENKINS_PASS (Optional)          | Override default admin password                                                                                        |
 
 ## Nodes
 
