@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 
 if [ -z "$1" ]
   then

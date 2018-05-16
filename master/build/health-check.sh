@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 
 http_code=$(curl localhost:8080 -fsw %{http_code} -o /dev/null)
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 
 openssl genrsa \
   -aes256 \

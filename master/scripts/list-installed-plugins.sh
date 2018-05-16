@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -eu
 
 JENKINS_HOST="docker-machine:8080"
 
