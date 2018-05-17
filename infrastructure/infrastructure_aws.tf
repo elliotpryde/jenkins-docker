@@ -28,7 +28,7 @@ resource "aws_key_pair" "ssh-key-pair" {
 
 # Find my latest available jenkins_master AMI
 data "aws_ami" "jenkins_master" {
-  owners = ["670785527082"] # Canonical
+  owners = ["self"]
 
   most_recent = true
 
