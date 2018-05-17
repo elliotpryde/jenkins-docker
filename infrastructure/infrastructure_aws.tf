@@ -45,7 +45,7 @@ data "aws_ami" "jenkins_master" {
 
 resource "aws_instance" "jenkins_master_vm" {
   ami             = "${data.aws_ami.jenkins_master.id}"
-  instance_type   = "t2.nano"
+  instance_type   = "t2.micro"
   security_groups = ["allow_all"]
   key_name        = "elliot_ssh"
 }
