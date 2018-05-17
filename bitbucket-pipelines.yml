@@ -3,7 +3,7 @@ options:
 
 pipelines:
   branches:
-    master:
+   '**':
       - parallel:
         - step:
             image: hashicorp/packer:1.2.3
