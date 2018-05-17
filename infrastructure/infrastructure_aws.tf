@@ -21,9 +21,9 @@ resource "aws_security_group" "allow_all" {
   }
 }
 
-resource "aws_key_pair" "ssh-key-pair" {
-  key_name   = "ssh-key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNfVl+XOfCXd1qAs1ZAOIRUuofz8KURoYJJK3g7/YJ660WWxcCRS73PMlcPsjbPunIi/maKDpuv3U2/rzknZGfKcUYsAtnPm7LD70zEZknTZtb4vM2+xtV5QLoFvB9MLoZr66WlJr5a4VQlyOa39mA5eo0RuaBtRAnCZrnA87AGGNv1CbCq5lhFO9QrFP++1Rd6Eqh+4XoIr1HL6N2BUA4QNKM2/hDgjtH+4gCOdeF1PJYvWf921mvsQfHGWLuD1Ldnb/xYKc/657Cg3z3lZKfmyCBwJ74QMamfoEwjJdtNa15/5VwLYqTnx904hnKZW2DpmuqjsQ8Y06P1HJlP9UP"
+resource "aws_key_pair" "elliot-ssh-key-pair" {
+  key_name   = "elliot-ssh"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0J377Qc4rDiOPGGu73WBHg6IGBPmyOs+/CiZf20681EzEjC21bkJBDPSMa3ur/fQr+r22tZz8OSIjUyTvjAiFynQRTEzkXbPyTWlzu9abNoCIVTXkmDlO/+zLOcNJi3oW+5L679144ww2mOLxBtaWqZQR7/sLOtE7atqtk5MwokcqCuqgoceI89d715mD8ZMqsdhIbAApyCvQExwOWPeVfxYSIGBnY6ULEL1d1e8pkGSTg/qUz1jcBwYX90xJNa/6DQ859u/ERE/mKSXUECJugp+X+i6qi8HBi5UXLJX3Hz5tIOtQIDIRoDrQsWWgJhahPTqqb04XHpXFHqX29Ayn elliot_ssh"
 }
 
 # Find my latest available jenkins_master AMI
@@ -47,5 +47,5 @@ resource "aws_instance" "jenkins_master_vm" {
   ami             = "${data.aws_ami.jenkins_master.id}"
   instance_type   = "t2.nano"
   security_groups = ["allow_all"]
-  key_name        = "ssh-key"
+  key_name        = "elliot_ssh"
 }
