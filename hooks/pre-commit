@@ -1,0 +1,15 @@
+#!/bin/sh
+
+git grep -q $AWS_ACCESS_KEY_ID
+if [ $? -eq 0 ]; then
+  echo 'WARNING: About to commit a secret: AWS_ACCESS_KEY_ID'
+  exit 1
+fi
+
+git grep -q $AWS_SECRET_ACCESS_KEY
+if [ $? -eq 0 ]; then
+  echo 'WARNING: About to commit a secret: AWS_SECRET_ACCESS_KEY'
+  exit 1
+fi
+
+exit 0
