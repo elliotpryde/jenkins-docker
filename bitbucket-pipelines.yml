@@ -1,5 +1,5 @@
 options:
-  max-time: 2
+  max-time: 3
 
 pipelines:
   branches:
@@ -7,7 +7,14 @@ pipelines:
       - parallel:
         - step:
             image: hashicorp/packer:1.2.3
-            name: Validate Packer Templates
+            name: Validate Packer templates
             script:
               - cd infrastructure
               - packer validate jenkins_master_ami.json
+  custom:
+    detect-infrastructure-state-drift:
+      - step:
+          image: hashicorp/terraform:0.11.7
+          name: Detect Terraform state drift
+          script:
+            - ./infrastructure/detect-terraform-state-drift.sh
