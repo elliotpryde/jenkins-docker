@@ -1,19 +1,19 @@
-# Overview
+# How to use
 
-## Master
+## Pre-requisites
 
-Runs as a single docker container.
+* An AWS account
+* An AWS S3 bucket which can be created through the AWS console GUI. This will be used to store the single source of truth for IaC managed state. This is the only
+  time we will need to interact with the AWS console or touch infrastructure outside of code (apart from creating new private keys). When creating the S3 bucket
+  via the wizard, enable versioning and read/write permissions for your $AWS_ACCESS_KEY_ID user. For more information, see the [official terraform s3 backend
+  documentation](https://www.terraform.io/docs/backends/types/s3.html).
+* [Terraform](https://www.terraform.io/) installed
 
 ## Getting started
 
 * Set the required environment variables defined in the section below
-* Install [terraform](https://www.terraform.io/) and run `terraform apply` from the `./infrastructure` directory
-
-#### TODO
-
-* Working solution for persisting the jenkins_home directory
-* Use docker image nodes from custom registry
-* Run docker container nodes on VM other than master
+* `terraform init` from the `./infrastructure` directory
+* `terraform apply` from the `./infrastructure` directory
 
 ## Environment variables
 
@@ -21,8 +21,14 @@ Runs as a single docker container.
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | AWS_ACCESS_KEY_ID (Required)     | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
 | AWS_SECRET_ACCESS_KEY (Required) | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
-| JENKINS_USER (Optional)          | Override default admin username                                                                                        |
-| JENKINS_PASS (Optional)          | Override default admin password                                                                                        |
+| JENKINS_USER (Optional)          | Override default admin username (admin)                                                                                |
+| JENKINS_PASS (Optional)          | Override default admin password (admin)                                                                                |
+
+# Overview
+
+## Master
+
+Runs as a single docker container.
 
 ## Nodes
 
