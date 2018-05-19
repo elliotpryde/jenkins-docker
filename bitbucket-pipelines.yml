@@ -11,10 +11,19 @@ pipelines:
             script:
               - cd infrastructure
               - packer validate jenkins_master_ami.json
+        - step:
+            image: hashicorp/terraform:0.11.7
+            name: Validate Terraform IaC
+            script:
+              - cd infrastructure
+              - terraform init
+              - terraform validate .
   custom:
     detect-infrastructure-state-drift:
       - step:
           image: hashicorp/terraform:0.11.7
           name: Detect Terraform state drift
           script:
+            - cd infrastructure
+            - terraform init
             - ./infrastructure/detect-terraform-state-drift.sh
