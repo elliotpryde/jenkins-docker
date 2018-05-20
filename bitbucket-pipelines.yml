@@ -9,7 +9,7 @@ pipelines:
             image: hashicorp/packer:1.2.3
             name: Validate Packer templates
             script:
-              - cd infrastructure
+              - cd infrastructure/images
               - packer validate jenkins_master_ami.json
         - step:
             image: hashicorp/terraform:0.11.7
@@ -26,4 +26,4 @@ pipelines:
           script:
             - cd infrastructure
             - terraform init
-            - ./infrastructure/detect-terraform-state-drift.sh
+            - ./infrastructure/terraform/scripts/detect-terraform-state-drift.sh
