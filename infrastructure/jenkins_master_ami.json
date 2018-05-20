@@ -22,19 +22,15 @@
     },
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "packer-example {{timestamp}}"
+    "ami_name": "jenkins_master {{timestamp}}"
   }],
   "provisioners": [
     {
-      "type": "file",
-      "source": "./hello-world.txt",
-      "destination": "/home/ubuntu/"
-    },
-    {
       "type": "shell",
-      "inline": [
-        "ls -la /home/ubuntu",
-        "cat /home/ubuntu/hello-world.txt"
+      "scripts": [
+        "scripts/install-docker.sh",
+        "scripts/install-docker-compose.sh",
+        "scripts/run-jenkins-master.sh"
       ]
     }
   ]
