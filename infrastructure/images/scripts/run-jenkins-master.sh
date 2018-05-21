@@ -1,5 +1,10 @@
 #!/bin/sh -x
 
+# DEPENDS ON
+#   Tools:
+#     docker
+#     docker-compose
+
 git clone https://elliotpryde@bitbucket.org/elliotpryde/jenkins-docker.git
 cd jenkins-docker/master
 # echo JENKINS_ROOT=$JENKINS_ROOT > network.env # epTODO
