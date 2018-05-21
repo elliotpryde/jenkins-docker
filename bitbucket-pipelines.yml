@@ -26,4 +26,4 @@ pipelines:
           script:
             - cd infrastructure
             - terraform init
-            - ./infrastructure/terraform/scripts/detect-terraform-state-drift.sh
+            - ./terraform/scripts/detect-terraform-state-drift.sh
