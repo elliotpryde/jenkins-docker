@@ -1,0 +1,11 @@
+name: aws
+title: AWS tests
+maintainer: Elliot Pryde
+copyright: Elliot Pryde
+copyright_email: elliotpryde@gmail.com
+license: GPL-3.0
+summary: Verify that AWS is configured correctly
+version: 0.1
+supports:
+  - platform: aws
+inspec_version: "2.1.83"

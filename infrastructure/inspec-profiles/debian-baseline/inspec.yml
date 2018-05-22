@@ -1,0 +1,11 @@
+name: debian-baseline
+title: Debian baseline tests
+maintainer: Elliot Pryde
+copyright: Elliot Pryde
+copyright_email: elliotpryde@gmail.com
+license: GPL-3.0
+summary: Some debian hardening
+version: 0.1
+supports:
+  - os-family: linux
+inspec_version: "2.1.83"

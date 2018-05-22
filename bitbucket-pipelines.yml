@@ -18,6 +18,14 @@ pipelines:
               - cd infrastructure
               - terraform init
               - terraform validate .
+        - step:
+            image: chef/inspec:2.1.83
+            name: Syntax check and lint InSpec tests
+            script:
+              - cd infrastructure/inspec-profiles
+              - inspec check aws-baseline
+              - inspec check debian-baseline
+              - inspec check jenkins-master
   custom:
     detect-infrastructure-state-drift:
       - step:
@@ -27,3 +35,10 @@ pipelines:
             - cd infrastructure
             - terraform init
             - ./terraform/scripts/detect-terraform-state-drift.sh
+    inspec-infrastructure-tests:
+      - step:
+          image: chef/inspec:2.1.83
+          name: Run tests against current infrastructure
+          script:
+            - inspec infrastructure/inspec-profiles/jenkins-master -t ssh://ubuntu@<TODO-jenkins-master-dns> -i <TODO-ssh-private-key>
+            - inspec infrastructure/inspec-profiles/aws-baseline -t aws://
