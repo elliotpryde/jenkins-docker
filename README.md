@@ -1,5 +1,14 @@
 # How to use
 
+## Tools/Services used
+
+| Tool/Service                                         | Description                                        |
+| ---------------------------------------------------- | -------------------------------------------------- |
+| [Amazon Web Services (AWS)](https://aws.amazon.com/) | cloud provider                                     |
+| [Terraform](https://www.terraform.io/)               | infrastructure orchestration                       |
+| [Packer](https://www.packer.io/)                     | building VM images                                 |
+| [InSpec](https://www.inspec.io/)                     | infrastructure compliance/security test automation |
+
 ## Pre-requisites
 
 * An AWS account
@@ -7,22 +16,22 @@
   time we will need to interact with the AWS console or touch infrastructure outside of code (apart from creating new private keys). When creating the S3 bucket
   via the wizard, enable versioning and read/write permissions for your $AWS_ACCESS_KEY_ID user. For more information, see the [official terraform s3 backend
   documentation](https://www.terraform.io/docs/backends/types/s3.html).
-* [Terraform](https://www.terraform.io/) installed
 
 ## Getting started
 
 * Set the required environment variables defined in the section below
+* build the required jenkins-master AMI by running `packer build jenkins_master_ami.json` from the `./infrastructure/images` directory
 * `terraform init` from the `./infrastructure` directory
 * `terraform apply` from the `./infrastructure` directory
 
 ## Environment variables
 
-| Key                              | Description                                                                                                            |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| AWS_ACCESS_KEY_ID (Required)     | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
-| AWS_SECRET_ACCESS_KEY (Required) | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
-| JENKINS_USER (Optional)          | Override default admin username (admin)                                                                                |
-| JENKINS_PASS (Optional)          | Override default admin password (admin)                                                                                |
+| Key                               | Description                                                                                                            |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| AWS_ACCESS_KEY_ID (Required)      | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
+| AWS_SECRET_ACCESS_KEY (Required)  | Can be found on [AWS console security credentials page](https://console.aws.amazon.com/iam/home?#/security_credential) |
+| JENKINS_USER (Optional)           | Override default admin username (admin)                                                                                |
+| JENKINS_PASS (Optional)           | Override default admin password (admin)                                                                                |
 
 # Overview
 
