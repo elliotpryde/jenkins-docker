@@ -11,16 +11,6 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "network" {
-  backend = "s3"
-
-  config {
-    bucket = "jenkins-docker-terraform"
-    key    = "jenkins-docker-terraform.tfstate"
-    region = "eu-west-2"                        # backend values cannot be interpolated :(
-  }
-}
-
 module "jenkins-master" {
   source = "./terraform"
 
