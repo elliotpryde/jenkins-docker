@@ -4,7 +4,7 @@ services:
     image: jenkins-master:0.1
     container_name: jenkins-master
     build:
-      context: ./build
+      context: ./jenkins-master
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
