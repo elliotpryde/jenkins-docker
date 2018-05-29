@@ -1,4 +1,4 @@
-version: '3.2'
+version: '2'
 services:
   jenkins-master:
     image: chuck202/jenkins-master:0.1
@@ -9,8 +9,14 @@ services:
     ports:
       - "5000:5000"
       - "8080:8080"
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+    volumes_from:
+      - jenkins-data
     restart: always
     env_file:
       - ./network.env
+  jenkins-data:
+    image: chuck202/jenkins-data:0.1
+    container_name: jenkins-data
+    build:
+      context: ./jenkins-data
+      dockerfile: Dockerfile
