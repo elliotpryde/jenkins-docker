@@ -35,5 +35,3 @@ ENV JENKINS_ROOT "http://localhost:8080"
 
 # Configure jenkins
 COPY config/*.groovy /usr/share/jenkins/ref/init.groovy.d/
-
-VOLUME [$JENKINS_HOME, "/var/run/docker.sock"]
