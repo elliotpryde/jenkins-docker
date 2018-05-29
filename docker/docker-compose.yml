@@ -8,7 +8,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-      - "8080:8080"
     volumes_from:
       - jenkins-data
     restart: always
@@ -20,3 +19,13 @@ services:
     build:
       context: ./jenkins-data
       dockerfile: Dockerfile
+  jenkins-nginx:
+    image: chuck202/jenkins-nginx:0.1
+    container_name: jenkins-nginx
+    build:
+      context: ./jenkins-nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - jenkins-master
