@@ -3,9 +3,7 @@ services:
   jenkins-master:
     image: chuck202/jenkins-master:0.1
     container_name: jenkins-master
-    build:
-      context: ./jenkins-master
-      dockerfile: Dockerfile
+    build: jenkins-master
     ports:
       - "50000:50000"
     volumes_from:
@@ -16,15 +14,11 @@ services:
   jenkins-data:
     image: chuck202/jenkins-data:0.1
     container_name: jenkins-data
-    build:
-      context: ./jenkins-data
-      dockerfile: Dockerfile
+    build: jenkins-data
   jenkins-nginx:
     image: chuck202/jenkins-nginx:0.1
     container_name: jenkins-nginx
-    build:
-      context: ./jenkins-nginx
-      dockerfile: Dockerfile
+    build: jenkins-nginx
     ports:
       - "80:80"
     links:
