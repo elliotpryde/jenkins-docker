@@ -13,12 +13,18 @@
 
 [Binding the jenkins root directory as a volume is both recommended and discouraged](https://github.com/jenkinsci/docker/blob/master/README.md)
 
-## Backups
+## Logs
 
-Run the command below to backup the entire jenkins home directory.
+To tail the logs:
 
 ```sh
-docker cp $ID:/var/jenkins_home destination_dir
+docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
+```
+
+To fetch the logs:
+
+```sh
+docker cp jenkins-master:/var/log/jenkins/jenkins.log jenkins.log
 ```
 
 ## Plugins
