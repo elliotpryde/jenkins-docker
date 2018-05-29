@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   jenkins-master:
-    image: jenkins-master:0.1
+    image: chuck202/jenkins-master:0.1
     container_name: jenkins-master
     build:
       context: ./jenkins-master
