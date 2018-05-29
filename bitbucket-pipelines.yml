@@ -26,6 +26,17 @@ pipelines:
               - inspec check aws-baseline
               - inspec check debian-baseline
               - inspec check jenkins-master
+        - step:
+            image: docker/compose:1.21.2
+            name: Build jenkins-master docker images
+            script:
+              - : ${JENKINS_ROOT:?"JENKINS_ROOT environment variable must be set"}
+              - : ${DOCKER_HUB_PASSWORD:?"DOCKER_HUB_PASSWORD environment variable must be set"}
+              - cd docker
+              - echo "JENKINS_ROOT=${JENKINS_ROOT}" > network.env
+              - docker-compose build
+              - docker login --username=chuck202 --password=${DOCKER_HUB_PASSWORD}
+              - docker push chuck202/jenkins-master
   custom:
     detect-infrastructure-state-drift:
       - step:
