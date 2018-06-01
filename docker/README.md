@@ -13,6 +13,10 @@
 
 [Binding the jenkins root directory as a volume is both recommended and discouraged](https://github.com/jenkinsci/docker/blob/master/README.md)
 
+## Enabling Docker remote API on a host
+
+[Follow these steps](https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04/)
+
 ## Logs
 
 To tail the logs:
