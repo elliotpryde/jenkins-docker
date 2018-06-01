@@ -21,3 +21,10 @@ log:
 
 tail:
 	@docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
+
+re:
+	@echo yes | make clean-data \
+		&& make build \
+		&& make run \
+		&& sleep 3 \
+		&& make tail
