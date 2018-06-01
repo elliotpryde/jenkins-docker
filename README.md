@@ -47,16 +47,27 @@ Runs as a single docker container.
 
 [Jenkins Docker plugin documentation](https://wiki.jenkins.io/display/JENKINS/Docker+Plugin)
 
+## Temporary steps to get this working
+
+* Install the docker-plugin manually to avoid the ssh-slaves plugin initialisation error
+* Configure another host with the docker remote API configured for `tcp://0.0.0.0:2376` ([Instructions](https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04))
+* Configure a jenkins docker cloud with the settings below
+
+![cloud config](resources/docker-cloud-config.png)
+
+* TODO: Create a custom slave image which contains my ssh key as authorized_keys
+* TODO: Pull the custom slave image from a registry/locally when needed
+* TODO: Slaves created and torn down as expected
+* TODO: Docker daemon API accessed using TLS
+
 ### Linux
 
 __Pipeline provisioning ✔__
 
-After installing the docker plugin, define a docker 'Cloud' which is an endpoint for the docker engine API.
+After installing the docker plugin, define a docker 'Cloud' which is an endpoint for the docker daemon API.
 
 To test connectivity `docker -H remote.host:2375 info`
 
-* [Add `"hosts": ["tcp://127.0.0.1:2375"]` to /c/programdata/docker/config/daemon.json?](http://simontimms.com/2016/07/20/windows_docker_daemon/)
-* In docker GUI, check 'Expose daemon on tcp://localhost:2375 without TLS'?
 * Configure the docker plugin automatically and register the docker cloud in a [Jenkins post-initialization script](https://wiki.jenkins.io/display/JENKINS/Post-initialization+script)
 
 ### Windows
