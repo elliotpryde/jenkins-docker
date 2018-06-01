@@ -22,8 +22,12 @@ log:
 tail:
 	@docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
 
-re:
+refresh:
 	@echo yes | make clean-data \
+		&& make clean-images \
+		&& docker stop $(docker ps -aq) \
+		&& docker rm $(docker ps -aq) \
+		&& docker rmi chuck202/data:0.1 chuck202/master:0.1 || true \
 		&& make build \
 		&& make run \
 		&& sleep 3 \

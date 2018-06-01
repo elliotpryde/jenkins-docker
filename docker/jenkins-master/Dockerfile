@@ -12,14 +12,11 @@ USER jenkins
 
 # Install plugins
 RUN /usr/local/bin/install-plugins.sh \
-    timestamper \
-    git \
-    matrix-auth \
-    workflow-aggregator \
-    docker-workflow \
-    docker-plugin \
     blueocean \
-    credentials-binding
+    # docker-plugin \
+    # git \
+    matrix-auth
+    # timestamper
 
 # Set default login credentials
 ENV JENKINS_USER admin
