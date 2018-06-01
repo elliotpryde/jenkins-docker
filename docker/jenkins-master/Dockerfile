@@ -29,7 +29,7 @@ ENV JENKINS_PASS admin
 EXPOSE 8080
 
 # Used by JNLP build slaves
-EXPOSE 5000
+EXPOSE 50000
 
 # Add a specialised script for healthchecks
 COPY health-check.sh /usr/local/bin/health-check.sh
