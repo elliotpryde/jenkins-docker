@@ -15,3 +15,9 @@ clean-data:	clean
 
 clean-images:
 	@docker rmi `docker images -q -f "dangling=true"`
+
+log:
+	@docker cp jenkins-master:/var/log/jenkins/jenkins.log jenkins.log
+
+tail:
+	@docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
