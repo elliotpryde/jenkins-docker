@@ -1,22 +1,17 @@
 FROM jenkins/jenkins:2.125
 
 USER root
-
-# Create a folder to store the jenkins logs and move the jenkins WAR file from our persisted directory
+# Create a folder to store the jenkins logs
 RUN mkdir /var/log/jenkins
+# Create a folder to move the jenkins WAR file to (by default, it's in our persisted directory)
 RUN mkdir /var/cache/jenkins
 RUN chown -R jenkins:jenkins /var/log/jenkins
 RUN chown -R jenkins:jenkins /var/cache/jenkins
-
 USER jenkins
 
 # Install plugins
-RUN /usr/local/bin/install-plugins.sh \
-    blueocean \
-    # docker-plugin \
-    # git \
-    matrix-auth
-    # timestamper
+COPY config/plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 # Set default login credentials
 ENV JENKINS_USER admin
@@ -30,7 +25,6 @@ EXPOSE 50000
 
 # Add a specialised script for healthchecks
 COPY health-check.sh /usr/local/bin/health-check.sh
-
 HEALTHCHECK --interval=15s --timeout=5s --retries=3 \
   CMD ./usr/local/bin/health-check.sh
 
