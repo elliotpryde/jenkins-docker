@@ -1,3 +1,7 @@
+# TOOD
+
+ * Make the packer provisioners idempotent
+
 # How to use
 
 ## Tools/Services used
