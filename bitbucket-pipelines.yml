@@ -3,7 +3,23 @@ options:
 
 pipelines:
   branches:
-   '**':
+    master:
+      - step:
+          name: Build and publish jenkins master docker images
+          image: docker/compose:1.21.2
+          script:
+            - sh ensure-pipeline-env-vars-set.sh
+            - cd docker
+            - echo "JENKINS_ROOT=${JENKINS_ROOT}" > network.env
+            - docker-compose build
+            - docker login --username=chuck202 --password=${DOCKER_HUB_PASSWORD}
+            - docker push chuck202/master:0.1
+            - docker push chuck202/nginx:0.1
+            - docker push chuck202/data:0.1
+          services:
+            - docker
+          max-time: 5
+    '**':
       - parallel:
         - step:
             image: hashicorp/packer:1.2.3
@@ -26,17 +42,6 @@ pipelines:
               - inspec check aws-baseline
               - inspec check debian-baseline
               - inspec check jenkins-master
-        - step:
-            image: docker/compose:1.21.2
-            name: Build jenkins-master docker images
-            script:
-              - : ${JENKINS_ROOT:?"JENKINS_ROOT environment variable must be set"}
-              - : ${DOCKER_HUB_PASSWORD:?"DOCKER_HUB_PASSWORD environment variable must be set"}
-              - cd docker
-              - echo "JENKINS_ROOT=${JENKINS_ROOT}" > network.env
-              - docker-compose build
-              - docker login --username=chuck202 --password=${DOCKER_HUB_PASSWORD}
-              - docker push chuck202/jenkins-master
   custom:
     detect-infrastructure-state-drift:
       - step:
@@ -46,7 +51,7 @@ pipelines:
             - cd infrastructure
             - terraform init
             - ./terraform/scripts/detect-terraform-state-drift.sh
-    inspec-infrastructure-tests:
+    run-inspec-infrastructure-tests:
       - step:
           image: chef/inspec:2.1.83
           name: Run tests against current infrastructure
