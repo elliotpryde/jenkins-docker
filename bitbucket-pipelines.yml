@@ -18,6 +18,8 @@ pipelines:
             - docker push chuck202/data:0.1
           services:
             - docker
+          caches:
+            - docker
           max-time: 5
       - step:
         name: Deploy to AWS
