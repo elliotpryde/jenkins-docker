@@ -1,6 +1,5 @@
 options:
   max-time: 3
-  docker: true
 
 pipelines:
   branches:
@@ -39,6 +38,8 @@ pipelines:
               - docker push chuck202/master:0.1
               - docker push chuck202/nginx:0.1
               - docker push chuck202/data:0.1
+            services:
+              - docker
   custom:
     detect-infrastructure-state-drift:
       - step:
