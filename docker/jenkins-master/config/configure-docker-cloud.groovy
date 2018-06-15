@@ -34,13 +34,13 @@ def DockerTemplateParameters = [
 ]
 
 def dockerCloudParameters = [
-  connectTimeout:   5,
+  connectTimeout:   20,
   containerCapStr:  '100',
   credentialsId:    '',
   dockerHostname:   '',
   name:             'AWS-docker-slave-host',
-  readTimeout:      15,
-  serverUrl:        'tcp://ec2-18-130-100-214.eu-west-2.compute.amazonaws.com:2376', // epTODO use jenkins slave host DNS
+  readTimeout:      60,
+  serverUrl:        'tcp://35.178.17.85:2376', // epTODO use jenkins slave host DNS rather than IP
   version:          ''
 ]
 
