@@ -40,6 +40,7 @@ pipelines:
               - docker push chuck202/data:0.1
             services:
               - docker
+            max-time: 5
   custom:
     detect-infrastructure-state-drift:
       - step:
