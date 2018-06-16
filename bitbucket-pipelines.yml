@@ -18,7 +18,16 @@ pipelines:
             - docker push chuck202/data:0.1
           services:
             - docker
+          caches:
+            - docker
           max-time: 5
+      - step:
+        name: Deploy to AWS
+        deployment: test
+        script:
+          - cd infrastructure
+          - terraform init # epTODO ensure that the AWS env vars are set
+          - echo yes | terraform apply # epTODO another script line for config mgmt
     '**':
       - parallel:
         - step:

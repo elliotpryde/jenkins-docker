@@ -1,14 +1,5 @@
 # Jenkins master container
 
-## TODO
-
-### Get jenkins master running with a declarative pipeline which provisions a docker slave.
-
-* Docker slaves being provisioned on the jenkins master docker-machine
-* Once Docker cloud host URI is working, update the DOCKER_HOST environment variable with it
-* Move bitbucket ssh private key to jenkins master ~/.ssh/id_rsa
-* Docker slaves on a different machines than the master
-
 ## Notes
 
 [Binding the jenkins root directory as a volume is both recommended and discouraged](https://github.com/jenkinsci/docker/blob/master/README.md)
