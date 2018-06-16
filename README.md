@@ -49,15 +49,8 @@ Runs as a single docker container.
 
 ## Temporary steps to get this working
 
-* Install the docker-plugin manually to avoid the ssh-slaves plugin initialisation error
 * Configure another host with the docker remote API configured for `tcp://0.0.0.0:2376` ([Instructions](https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04))
-* Configure a jenkins docker cloud with the settings below
 
-![cloud config](resources/docker-cloud-config.png)
-
-* TODO: Create a custom slave image which contains my ssh key as authorized_keys
-* TODO: Pull the custom slave image from a registry/locally when needed
-* TODO: Slaves created and torn down as expected
 * TODO: Docker daemon API accessed using TLS
 
 ### Linux
