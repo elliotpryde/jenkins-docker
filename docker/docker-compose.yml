@@ -23,7 +23,3 @@ services:
       - "80:80"
     links:
       - master
-  slave:
-    image: chuck202/slave:0.1
-    container_name: jenkins-slave
-    build: jenkins-slave
