@@ -51,6 +51,7 @@ Runs as a single docker container.
 
 * Configure another host with the docker remote API configured for `tcp://0.0.0.0:2376` ([Instructions](https://www.ivankrizsan.se/2016/05/18/enabling-docker-remote-api-on-ubuntu-16-04))
 
+* TODO: Provisioning containers across multiple hosts (swarm)
 * TODO: Docker daemon API accessed using TLS
 
 ### Linux
