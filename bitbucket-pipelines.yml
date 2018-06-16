@@ -22,12 +22,13 @@ pipelines:
             - docker
           max-time: 5
       - step:
-        name: Deploy to AWS
-        deployment: test
-        script:
-          - cd infrastructure
-          - terraform init # epTODO ensure that the AWS env vars are set
-          - echo yes | terraform apply # epTODO another script line for config mgmt
+          name: Deploy to AWS
+          deployment: test
+          trigger: manual
+          script:
+            - cd infrastructure
+            - terraform init # epTODO ensure that the AWS env vars are set
+            - echo yes | terraform apply # epTODO another script line for config mgmt
     '**':
       - parallel:
         - step:
