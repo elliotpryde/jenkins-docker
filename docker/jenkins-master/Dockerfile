@@ -1,5 +1,8 @@
 FROM jenkins/jenkins:2.125
 
+# Set the timezone
+ENV TZ Europe/London
+
 USER root
 # Create a folder to store the jenkins logs
 RUN mkdir /var/log/jenkins
