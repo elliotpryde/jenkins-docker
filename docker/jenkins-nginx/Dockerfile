@@ -1,5 +1,8 @@
 FROM centos:centos7
 
+# Set the timezone
+ENV TZ Europe/London
+
 # Install NGINX
 RUN yum -y update; yum clean all
 RUN yum -y install http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm; yum -y makecache

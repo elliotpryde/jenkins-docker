@@ -1,5 +1,8 @@
 FROM debian:jessie
 
+# Set the timezone
+ENV TZ Europe/London
+
 # Create jenkins user with same UID as the jenkins master user
 RUN useradd -d "/var/jenkins_home" -u 1000 -m -s /bin/bash jenkins
 
