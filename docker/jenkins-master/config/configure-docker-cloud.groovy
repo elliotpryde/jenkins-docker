@@ -90,7 +90,12 @@ DockerCloud dockerCloud = new DockerCloud(
 
 if(!Jenkins.instance.isQuietingDown()) {
   Jenkins jenkins = Jenkins.getInstance()
-  jenkins.clouds.add(dockerCloud)
+  ArrayList<DockerCloud> clouds = new ArrayList<DockerCloud>()
+
+  clouds.push(dockerCloud)
+
+  jenkins.clouds.removeAll(DockerCloud)
+  jenkins.clouds.addAll(clouds)
 
   jenkins.save()
   println "Added docker cloud ${dockerCloudParameters.name} successfully."
