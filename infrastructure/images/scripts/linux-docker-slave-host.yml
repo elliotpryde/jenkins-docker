@@ -1,9 +1,0 @@
----
-# This playbook sets up a linux docker slave host
-
-- hosts: 127.0.0.1
-  connection: local
-  tasks:
-  - name: print out the hostname of target
-    command: hostname
-

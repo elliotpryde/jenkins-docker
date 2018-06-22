@@ -33,7 +33,8 @@
       },
       {
           "type": "ansible-local",
-          "playbook_file": "scripts/linux-docker-slave-host.yml"
+          "playbook_file": "ansible/playbooks/linux-docker-slave-host/playbook.yml",
+          "galaxy_file": "ansible/playbooks/linux-docker-slave-host/requirements.yml"
       },
       {
         "type": "shell",
