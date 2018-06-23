@@ -88,11 +88,18 @@ DockerCloud dockerCloud = new DockerCloud(
   dockerCloudParameters.dockerHostname
 )
 
-// get Jenkins instance
-Jenkins jenkins = Jenkins.getInstance()
+if(!Jenkins.instance.isQuietingDown()) {
+  Jenkins jenkins = Jenkins.getInstance()
+  ArrayList<DockerCloud> clouds = new ArrayList<DockerCloud>()
 
-// add cloud configuration to Jenkins
-jenkins.clouds.add(dockerCloud)
+  clouds.push(dockerCloud)
 
-// save current Jenkins state to disk
-jenkins.save()
+  jenkins.clouds.removeAll(DockerCloud)
+  jenkins.clouds.addAll(clouds)
+
+  jenkins.save()
+  println "Added docker cloud ${dockerCloudParameters.name} successfully."
+}
+else {
+    println "Shutdown mode enabled. Add docker cloud SKIPPED."
+}
