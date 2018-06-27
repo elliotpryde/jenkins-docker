@@ -18,3 +18,6 @@ resource "aws_route53_zone" "elliotpryde" {
 #   records = ["${aws_eip.jenkins_master_eip.public_ip}"]
 # }
 
+output "linux_docker_slave_ip" {
+  value = "${aws_eip.linux_docker_slave_host_eip.public_ip}"
+}
