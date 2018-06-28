@@ -2,3 +2,4 @@ inspec.lock
 *.pem
 jenkins.log
 secrets.tfvars
+google-cloud-credentials.json
