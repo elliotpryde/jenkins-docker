@@ -6,6 +6,14 @@ provider "aws" {
   version             = "1.19"
 }
 
+provider "google" {
+  alias       = "main"
+  credentials = "${file("google-cloud-credentials.json")}"
+  project     = "jenkins-docker-208620"                    # epTODO make this a terraform variable
+  region      = "europe-west2"
+  version     = "1.15"
+}
+
 terraform {
   backend "s3" {
     bucket = "jenkins-docker-terraform"
@@ -18,7 +26,8 @@ module "jenkins-master" {
   source = "./terraform"
 
   providers = {
-    aws = "aws.main"
+    aws    = "aws.main"
+    google = "google.main"
   }
 }
 
