@@ -9,7 +9,7 @@ provider "aws" {
 provider "google" {
   alias       = "main"
   credentials = "${file("google-cloud-credentials.json")}"
-  project     = "jenkins-docker-208620"                    # epTODO make this a terraform variable
+  project     = "${var.google_project_id}"
   region      = "europe-west2"
   version     = "1.15"
 }
@@ -40,5 +40,9 @@ variable "aws_profile" {
 }
 
 variable "aws_account_id" {
+  type = "string"
+}
+
+variable "google_project_id" {
   type = "string"
 }
