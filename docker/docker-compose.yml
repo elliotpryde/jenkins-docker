@@ -1,7 +1,7 @@
 version: '2'
 services:
   master:
-    image: chuck202/master:0.1
+    image: registry.gitlab.com/merlodicus/jenkins-docker/master:0.1
     container_name: jenkins-master
     build: jenkins-master
     ports:
@@ -12,11 +12,11 @@ services:
     env_file:
       - ./network.env
   data:
-    image: chuck202/data:0.1
+    image: registry.gitlab.com/merlodicus/jenkins-docker/data:0.1
     container_name: jenkins-data
     build: jenkins-data
   nginx:
-    image: chuck202/nginx:0.1
+    image: registry.gitlab.com/merlodicus/jenkins-docker/nginx:0.1
     container_name: jenkins-nginx
     build: jenkins-nginx
     ports:

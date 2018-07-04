@@ -7,7 +7,7 @@ run:
 stop:
 	@docker-compose -p jenkins stop
 
-clean:	stop
+clean: stop
 	@docker-compose -p jenkins rm master nginx
 
 clean-data:	clean
@@ -22,8 +22,10 @@ log:
 tail:
 	@docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
 
-refresh:
-	@docker rm jenkins-data jenkins-master || true \
-		&& docker rmi chuck202/data:0.1 chuck202/master:0.1 || true \
-		&& make build \
-		&& make run
+docker-registry-login:
+	docker login registry.gitlab.com --username=${GITLAB_EMAIL} --password=${GITLAB_PASSWORD}
+
+publish: docker-registry-login
+	@docker push registry.gitlab.com/merlodicus/jenkins-docker/master:0.1 \
+		&& docker push registry.gitlab.com/merlodicus/jenkins-docker/data:0.1 \
+		&& docker push registry.gitlab.com/merlodicus/jenkins-docker/nginx:0.1
