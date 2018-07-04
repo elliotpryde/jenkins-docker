@@ -1,5 +1,6 @@
 blueocean:1.5.0
 docker-plugin:1.1.4
+greenballs:1.15
 jdk-tool:1.1
 matrix-auth:2.2
 timestamper:1.8.10
