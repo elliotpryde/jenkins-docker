@@ -11,3 +11,14 @@ validate:packer-templates:
   script:
     - cd infrastructure/images
     - for t in $(ls | grep .json$); do echo "Validating ${t}" && packer validate ${t}; done
+
+validate:inspec-tests:
+  stage: validate
+  image:
+    name: chef/inspec:2.2.27
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+    - cd infrastructure/inspec-profiles
+    - inspec check aws-baseline
+    - inspec check debian-baseline
+    - inspec check jenkins-master
