@@ -1,0 +1,13 @@
+# Lint at https://gitlab.com/merlodicus/jenkins-docker/-/ci/lint
+
+stages:
+  - validate
+
+validate:packer-templates:
+  stage: validate
+  image:
+    name: hashicorp/packer:1.2.4
+    entrypoint: ["/bin/sh", "-c"]
+  script:
+    - cd infrastructure/images
+    - for t in $(ls | grep .json$); do echo "Validating ${t}" && packer validate ${t}; done
