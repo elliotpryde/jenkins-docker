@@ -11,6 +11,9 @@
 #       some other stuff
 # manual deploy step?
 
+# Jobs which require AWS credentials:
+#   create a private runner which has access to AWS creds?
+
 stages:
   - validate
   - build
