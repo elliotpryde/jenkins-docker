@@ -75,3 +75,10 @@ TODO
 __Pipeline provisioning ❌__
 
 TODO
+
+## Manual infra setup required before Terraform can do the rest
+
+* ec2 instance to run terraform commands from
+* ec2 instance ssh from single ip security group
+* S3 backend provider
+* DynamoDB state locking
