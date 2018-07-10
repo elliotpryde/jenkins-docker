@@ -1,6 +1,8 @@
 provider "aws" {
-  alias  = "euw2"
-  region = "eu-west-2"
+  alias               = "euw2"
+  region              = "${var.aws_region}"
+  profile             = "${var.aws_profile}"
+  allowed_account_ids = ["${var.aws_account_id}"]
 }
 
 terraform {
@@ -17,4 +19,16 @@ module "jenkins-master" {
   providers = {
     aws = "aws.euw2"
   }
+}
+
+variable "aws_region" {
+  type = "string"
+}
+
+variable "aws_profile" {
+  type = "string"
+}
+
+variable "aws_account_id" {
+  type = "string"
 }
