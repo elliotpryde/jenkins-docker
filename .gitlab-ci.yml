@@ -13,6 +13,7 @@
 
 stages:
   - validate
+  - build
 
 validate:packer-templates:
   stage: validate
@@ -33,3 +34,39 @@ validate:inspec-tests:
     - inspec check aws-baseline
     - inspec check debian-baseline
     - inspec check jenkins-master
+
+build:jenkins-master:
+  stage: build
+  image: docker:stable # epTODO pin a stable version
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  variables:
+    CONTAINER_IMAGE: registry.gitlab.com/merlodicus/jenkins-docker/master
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVE: overlay2
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest docker/jenkins-master/ # epTODO set env var for JENKINS_ROOT
+    # - docker run <my-image> </script/to/run/tests>
+    - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
+    - docker push $CONTAINER_IMAGE:latest
+
+build:jenkins-nginx:
+  stage: build
+  image: docker:stable # epTODO pin a stable version
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  variables:
+    CONTAINER_IMAGE: registry.gitlab.com/merlodicus/jenkins-docker/nginx
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_DRIVE: overlay2
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest docker/jenkins-nginx/
+    # - docker run <my-image> </script/to/run/tests>
+    - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
+    - docker push $CONTAINER_IMAGE:latest
