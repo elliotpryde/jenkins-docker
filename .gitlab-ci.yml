@@ -44,6 +44,17 @@ validate:inspec-tests:
 #     - echo $?
 #     - exit 1
 
+# Requires AWS credentials
+# validate:terraform-iac:
+#   stage: validate
+#   image:
+#     name: hashicorp/terraform:0.11.7
+#     entrypoint: ["/bin/sh", "-c"]
+#   script:
+#     - cd infrastructure
+#     - terraform init
+#     - terraform validate .
+
 build:jenkins-master:
   stage: build
   image: docker:stable # epTODO pin a stable version
@@ -79,3 +90,23 @@ build:jenkins-nginx:
     # - docker run <my-image> </script/to/run/tests>
     - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
     - docker push $CONTAINER_IMAGE:latest
+
+# Requires AWS credentials
+# build:packer-jenkins-master-ami:
+#   stage: build
+#   image:
+#     name: hashicorp/packer:1.2.4
+#     entrypoint: ["/bin/sh", "-c"]
+#   script:
+#     - cd infrastructure/images
+#     - packer build jenkins_master_ami.json # epTODO first check if there are too may AMIs/snapshots in storage
+
+# Requires AWS credentials
+# build:packer-linux-docker-slave-ami:
+#   stage: build
+#   image:
+#     name: hashicorp/packer:1.2.4
+#     entrypoint: ["/bin/sh", "-c"]
+#   script:
+#     - cd infrastructure/images
+#     - packer build linux_docker_slave_host_ami.json # epTODO first check if there are too may AMIs/snapshots in storage
