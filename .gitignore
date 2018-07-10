@@ -1,3 +1,4 @@
 inspec.lock
 *.pem
 jenkins.log
+secrets.tfvars
