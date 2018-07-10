@@ -1,5 +1,15 @@
 ## Terraform
 
+Deploy
+```
+terraform apply -var-file=vars.tfvars -var-file=secrets.tfvars
+```
+
+Tear down
+```
+terraform destroy -var-file=vars.tfvars -var-file=secrets.tfvars
+```
+
 Get outputs
 ```
 terraform output -module=jenkins-master
