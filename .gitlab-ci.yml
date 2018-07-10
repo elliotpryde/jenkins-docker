@@ -35,6 +35,15 @@ validate:inspec-tests:
     - inspec check debian-baseline
     - inspec check jenkins-master
 
+# this should fail until i can resolve the galaxy deps
+# validate:ansible-playbooks:
+#   stage: validate
+#   image: williamyeh/ansible:alpine3
+#   script:
+#     - find . -name playbook.yml -exec ansible-playbook '{}' --syntax-check \;
+#     - echo $?
+#     - exit 1
+
 build:jenkins-master:
   stage: build
   image: docker:stable # epTODO pin a stable version
