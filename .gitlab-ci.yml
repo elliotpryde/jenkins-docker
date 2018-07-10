@@ -1,4 +1,15 @@
-# Lint at https://gitlab.com/merlodicus/jenkins-docker/-/ci/lint
+# validate artifact definitions
+# build+test+publish arifacts (docker images, VM images)
+#   tests:
+#     docker master:
+#       is exposing port 8080?
+#       jenkins service is running?
+#       health changes from 'starting' to 'healthy' within 30s/1m
+#     docker nginx:
+#       is exposing port 80?
+#       epTODO add a health check for this
+#       some other stuff
+# manual deploy step?
 
 stages:
   - validate
