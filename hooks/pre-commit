@@ -12,4 +12,10 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
+git grep -q "BEGIN PRIVATE KEY"
+if [ $? -eq 0 ]; then
+  echo 'WARNING: About to commit a file which contains the text "BEGIN PRIVATE KEY"'
+  exit 1
+fi
+
 exit 0
