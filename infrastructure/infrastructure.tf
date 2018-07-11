@@ -6,21 +6,20 @@ provider "aws" {
   version             = "1.19"
 }
 
-provider "google" {
-  alias = "main"
+# provider "google" {
+#   alias = "main"
 
-  # epTODO give this service account almost no permissions, and specify
-  # service_account permissions for each resource?
-  # https://www.terraform.io/docs/providers/google/r/compute_instance.html#scopes
+#   # epTODO give this service account almost no permissions, and specify
+#   # service_account permissions for each resource?
+#   # https://www.terraform.io/docs/providers/google/r/compute_instance.html#scopes
 
-  # At the moment, the 'Compute Engine Service Agent' permission is required to
-  # provision a compute instance
-  credentials = "${file("google-cloud-credentials.json")}"
-
-  project = "${var.google_project_id}"
-  region  = "europe-west2"
-  version = "1.15"
-}
+#   # At the moment, the 'Compute Engine Service Agent' permission is required to
+#   # provision a compute instance
+#   credentials = "${file("google-cloud-credentials.json")}"
+#   project = "${var.google_project_id}"
+#   region  = "europe-west2"
+#   version = "1.15"
+# }
 
 terraform {
   backend "s3" {
@@ -34,8 +33,9 @@ module "jenkins-master" {
   source = "./terraform"
 
   providers = {
-    aws    = "aws.main"
-    google = "google.main"
+    aws = "aws.main"
+
+    # google = "google.main"
   }
 }
 
@@ -51,6 +51,7 @@ variable "aws_account_id" {
   type = "string"
 }
 
-variable "google_project_id" {
-  type = "string"
-}
+# variable "google_project_id" {
+#   type = "string"
+# }
+
