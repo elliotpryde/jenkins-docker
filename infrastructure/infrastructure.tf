@@ -7,11 +7,19 @@ provider "aws" {
 }
 
 provider "google" {
-  alias       = "main"
+  alias = "main"
+
+  # epTODO give this service account almost no permissions, and specify
+  # service_account permissions for each resource?
+  # https://www.terraform.io/docs/providers/google/r/compute_instance.html#scopes
+
+  # At the moment, the 'Compute Engine Service Agent' permission is required to
+  # provision a compute instance
   credentials = "${file("google-cloud-credentials.json")}"
-  project     = "${var.google_project_id}"
-  region      = "europe-west2"
-  version     = "1.15"
+
+  project = "${var.google_project_id}"
+  region  = "europe-west2"
+  version = "1.15"
 }
 
 terraform {
