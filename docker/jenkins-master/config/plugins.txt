@@ -3,4 +3,5 @@ docker-plugin:1.1.4
 greenballs:1.15
 jdk-tool:1.1
 matrix-auth:2.2
+Office-365-Connector:4.5
 timestamper:1.8.10
