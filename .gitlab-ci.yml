@@ -62,7 +62,7 @@ build:jenkins-master:
   stage: build
   only:
     - master
-  image: docker:stable # epTODO pin a stable version
+  image: docker:18.03
   services:
     - docker:dind
   before_script:
@@ -82,7 +82,7 @@ build:jenkins-nginx:
   stage: build
   only:
     - master
-  image: docker:stable # epTODO pin a stable version
+  image: docker:18.03
   services:
     - docker:dind
   before_script:
