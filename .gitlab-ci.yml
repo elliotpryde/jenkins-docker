@@ -60,7 +60,8 @@ validate:inspec-tests:
 
 build:jenkins-master:
   stage: build
-  only: master
+  only:
+    - master
   image: docker:stable # epTODO pin a stable version
   services:
     - docker:dind
@@ -79,7 +80,8 @@ build:jenkins-master:
 
 build:jenkins-nginx:
   stage: build
-  only: master
+  only:
+    - master
   image: docker:stable # epTODO pin a stable version
   services:
     - docker:dind
