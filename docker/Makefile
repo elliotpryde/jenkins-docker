@@ -4,12 +4,15 @@ GITLAB_DEPLOY_TOKEN = ${GITLAB_DEPLOY_TOKEN}
 build:
 	@docker-compose -p jenkins build
 
+# epTODO wip
 login:
 	@docker login registry.gitlab.com -u GITLAB_USERNAME -p GITLAB_DEPLOY_TOKEN
 
+# epTODO wip
 pull: login
 	@docker-compose -p jenkins pull master nginx
 
+# epTODO wip
 run: # this should not build if the images don't exist, it should pull them from the registry
 	@docker-compose -p jenkins up -d nginx data master
 
