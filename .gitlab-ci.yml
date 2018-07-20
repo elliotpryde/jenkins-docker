@@ -34,9 +34,7 @@ validate:inspec-tests:
     entrypoint: ["/bin/sh", "-c"]
   script:
     - cd infrastructure/inspec-profiles
-    - inspec check aws-baseline
-    - inspec check debian-baseline
-    - inspec check jenkins-master
+    - for p in $(ls -d */); do echo "Checking ${p}" && inspec check ${p}; done
 
 # this should fail until i can resolve the galaxy deps
 # validate:ansible-playbooks:
