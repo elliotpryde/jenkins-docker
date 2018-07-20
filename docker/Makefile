@@ -1,7 +1,19 @@
+GITLAB_USERNAME = ${GITLAB_USERNAME}
+GITLAB_DEPLOY_TOKEN = ${GITLAB_DEPLOY_TOKEN}
+
 build:
 	@docker-compose -p jenkins build
 
-run:
+# epTODO wip
+login:
+	@docker login registry.gitlab.com -u GITLAB_USERNAME -p GITLAB_DEPLOY_TOKEN
+
+# epTODO wip
+pull: login
+	@docker-compose -p jenkins pull master nginx
+
+# epTODO wip
+run: # this should not build if the images don't exist, it should pull them from the registry
 	@docker-compose -p jenkins up -d nginx data master
 
 stop:
@@ -21,11 +33,3 @@ log:
 
 tail:
 	@docker exec jenkins-master tail -f /var/log/jenkins/jenkins.log
-
-docker-registry-login:
-	docker login registry.gitlab.com --username=${GITLAB_EMAIL} --password=${GITLAB_PASSWORD}
-
-publish: docker-registry-login
-	@docker push registry.gitlab.com/merlodicus/jenkins-docker/master:0.1 \
-		&& docker push registry.gitlab.com/merlodicus/jenkins-docker/data:0.1 \
-		&& docker push registry.gitlab.com/merlodicus/jenkins-docker/nginx:0.1
