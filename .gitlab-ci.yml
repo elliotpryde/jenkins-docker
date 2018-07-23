@@ -55,6 +55,7 @@ validate:inspec-tests:
 #     - cd infrastructure
 #     - terraform init
 #     - terraform validate .
+#     - terraform fmt -diff=true -check=true
 
 build:jenkins-master:
   stage: build
