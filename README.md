@@ -1,4 +1,4 @@
-# TOOD
+# TODO
 
  * Make the packer provisioners idempotent
 
